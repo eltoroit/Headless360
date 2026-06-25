@@ -1,0 +1,45 @@
+# Ignore AI/Agentforce metadata not supported in non-Einstein orgs
+# Remove these entries when deploying to an Agentforce-enabled org
+# force-app/main/default/aiPromptTemplates/
+# force-app/main/default/bots/
+# force-app/main/default/flows/Case_Assign_Category.flow-meta.xml
+
+
+### LWC local files
+**/__tests__/**
+**/*.ts
+**/jsconfig.json
+**/tsconfig.json
+**/.eslintrc.json
+
+### Ignore Profiles... You should be working with Permission Sets
+# Do not use custom profiles that come with the scratch orgs
+**/profiles/Custom*Profile.profile-meta.xml
+
+# Do not accept changes to the Admin profile when pulling. Reminds you of adding things to the permission sets
+# Admin.profile
+
+# Ignore any profile... Comment this line if you do need to work with your own profiles
+**/profiles/** 
+
+# Other files to ignore because they can not be deployed
+**/prm_*
+**/bots/**
+**/genAiPlannerBundles/**
+**/permissionsetgroups/force__*
+**/appMenus/AppSwitcher.appMenu-meta.xml
+**/permissionsets/sfdc*.permissionset-meta.xml
+**/reportTypes/MDF_Claim_Request_Crt.reportType-meta.xml
+**/permissionsets/NextGen_*_Permissions.permissionset-meta.xml
+
+# Ignore all standard Account fields (keep only custom fields)
+force-apps/deploy/main/default/objects/Account/fields/*
+!force-apps/deploy/main/default/objects/Account/fields/*__c.field-meta.xml
+
+# Ignore all standard Contact fields (keep only custom fields)
+force-apps/deploy/main/default/objects/Contact/fields/*
+!force-apps/deploy/main/default/objects/Contact/fields/*__c.field-meta.xml
+
+# Ignore all standard Case fields (keep only custom fields)
+force-apps/deploy/main/default/objects/Case/fields/*
+!force-apps/deploy/main/default/objects/Case/fields/*__c.field-meta.xml

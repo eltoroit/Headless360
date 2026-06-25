@@ -1,0 +1,15 @@
+{
+	"packageDirectories": [
+		{
+			"path": "force-app",
+			"default": true
+		},
+		{
+			"path": "force-site",
+			"default": false
+		}
+	],
+	"name": "Headless360",
+	"namespace": "",
+	"sourceApiVersion": "67.0"
+}

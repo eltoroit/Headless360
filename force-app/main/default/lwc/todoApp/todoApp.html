@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="TODO App: Headless 360 Demo">
+        <div slot="actions">
+            <lightning-combobox label="Viewing tasks for" placeholder="— pick a person —" value={selectedContactId}
+                options={contactOptions} onchange={handleContactChange}>
+            </lightning-combobox>
+        </div>
+        <div class="slds-p-around_medium">
+            <div class="slds-m-top_small">
+                <template lwc:if={selectedContactId}>
+                    <c-todo-table contact-id={selectedContactId}></c-todo-table>
+                </template>
+                <template lwc:else>
+                    <p class="slds-text-body_regular slds-text-color_weak slds-text-align_center">
+                        Select a person from the dropdown to see their tasks.
+                    </p>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,17 @@
+<template>
+    <lightning-modal-header label={modalTitle}></lightning-modal-header>
+
+    <lightning-modal-body>
+        <div class="slds-form slds-form_stacked">
+            <lightning-input label="Title" name="title" value={title} onchange={handleChange}></lightning-input>
+            <lightning-combobox label="Status" name="status" value={status} options={statusOptions} onchange={handleChange}></lightning-combobox>
+            <lightning-combobox label="Priority" name="priority" value={priority} options={priorityOptions} onchange={handleChange}></lightning-combobox>
+            <lightning-input type="date" label="Due Date" name="dueDate" value={dueDate} onchange={handleChange}></lightning-input>
+        </div>
+    </lightning-modal-body>
+
+    <lightning-modal-footer>
+        <lightning-button variant="neutral" label="Cancel" onclick={handleCancel}></lightning-button>
+        <lightning-button variant="brand" label="Save" onclick={handleSave}></lightning-button>
+    </lightning-modal-footer>
+</template>

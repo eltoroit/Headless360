@@ -1,0 +1,21 @@
+{
+  "description" : "Structured output for ET_Case_DuplicateAnalysis prompt template",
+  "lightning:type" : "lightning__objectType",
+  "title" : "ET Duplicate Analysis Result",
+  "required" : [ "duplicateGroupTitle", "recommendation", "roi" ],
+  "properties" : {
+    "duplicateGroupTitle" : {
+      "title" : "duplicateGroupTitle",
+      "description" : "",
+      "lightning:type" : "lightning__textType"
+    },
+    "recommendation" : {
+      "title" : "recommendation",
+      "lightning:type" : "lightning__textType"
+    },
+    "roi" : {
+      "title" : "roi",
+      "lightning:type" : "lightning__textType"
+    }
+  }
+}

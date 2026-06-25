@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>E3oOoURm8nSycJR4RSCmx6XZpvFRtpeNIheRlfMaS/A=_3</activeVersionIdentifier>
+    <description>Analyzes open Cases for duplicates and recommends consolidation priority</description>
+    <developerName>ET_Case_Duplicate_Analysis</developerName>
+    <masterLabel>ET Case Duplicate Analysis</masterLabel>
+    <overridable>false</overridable>
+    <templateVersions>
+        <content>You are a Salesforce support case analyst. Below is a JSON array of open support cases.
+
+Review all open cases and group them by the underlying functional problem described in the subject lines. 
+Give priority to the groups containing the highest-priority group based on: Breached SLA &gt; At-Risk accounts &gt; VIP accounts &gt; upcoming renewals and finally groups with the largest number of duplicates
+
+Guardrails:
+- NEVER have more than one group for similar issue.
+- It&apos;s OK if there are groups with a single case.
+
+Cases:
+{!$Input:caseSummaryList}
+
+Output:
+The output should follow this sample
+
+{
+    &quot;analysisSummary&quot;: &quot;Summarize the analysis&quot;,
+    &quot;recommendation&quot;: &quot;Provide the recommendation details&quot;,
+    &quot;casesGrouped&quot;: [
+        {
+            &quot;count&quot;: Number of cases in group
+            &quot;Reason&quot;: &quot;Briefly name the reason for the grouping, in one sentence describe the issue and SLA&quot;,
+            &quot;cases&quot;: [List of case(s) for this group]
+        }
+    ]
+}
+
+*casesGrouped*
+- Groups the cases by the issue being reported
+
+*casesGroup.cases*
+- Include the caseId, and subject only.
+
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>caseSummaryList</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>caseSummaryList</masterLabel>
+            <referenceName>Input:caseSummaryList</referenceName>
+            <required>true</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <responseFormat>JSON</responseFormat>
+        <status>Published</status>
+        <versionIdentifier>E3oOoURm8nSycJR4RSCmx6XZpvFRtpeNIheRlfMaS/A=_3</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

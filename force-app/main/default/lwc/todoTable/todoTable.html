@@ -1,0 +1,8 @@
+<template>
+	<lightning-card title={contactName}>
+		<div slot="actions">
+			<lightning-button variant="brand" label="New Task" onclick={handleNewTodo}></lightning-button>
+		</div>
+		<lightning-datatable key-field="Id" data={todos} columns={columns} hide-checkbox-column onrowaction={handleRowAction}></lightning-datatable>
+	</lightning-card>
+</template>

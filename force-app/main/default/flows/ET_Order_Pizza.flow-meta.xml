@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>ASS010</name>
+        <label>ASS010 Order Pizza</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>outOrderNumber</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>OrderNumberFormula</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>outTZDTTM_Promised</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>CalculatePromisedTime</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>outStatus</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>SuccessText</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <environments>Default</environments>
+    <formulas>
+        <description>5 minutes after requested time (just to make it different)</description>
+        <name>CalculatePromisedTime</name>
+        <dataType>DateTime</dataType>
+        <expression>FROMUNIXTIME(UNIXTIMESTAMP({!inTZDTTM_Request}) + (5*60))</expression>
+    </formulas>
+    <formulas>
+        <name>OrderNumberFormula</name>
+        <dataType>String</dataType>
+        <expression>TEXT(UNIXTIMESTAMP(NOW()))</expression>
+    </formulas>
+    <formulas>
+        <name>SuccessText</name>
+        <dataType>String</dataType>
+        <expression>&quot;Your pizza has been order successfully with these toppings: &quot; &amp; {!inToppings}</expression>
+    </formulas>
+    <interviewLabel>ET: Order Pizza {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>ET: Order Pizza</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>ASS010</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>What&apos;s the user timezone</description>
+        <name>inTimezone</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Toppings on the pizza</description>
+        <name>inToppings</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Requested date/time at which pizza should be delivered</description>
+        <name>inTZDTTM_Request</name>
+        <dataType>DateTime</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Pizza order number</description>
+        <name>outOrderNumber</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Determines if ordering a pizza was successful</description>
+        <name>outStatus</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <description>Promised delivery date/time for the pizza</description>
+        <name>outTZDTTM_Promised</name>
+        <dataType>DateTime</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>
